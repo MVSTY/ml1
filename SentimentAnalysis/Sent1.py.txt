@@ -1,0 +1,33 @@
+!pip install pandas
+!pip install tweepy
+!pip install vaderSentiment
+
+import tweepy
+import pandas as pd
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+#My Twitter API Authentication Variables
+consumer_key = 'k2UkCy0TpgxJgqUykEcEhQJKV'
+consumer_secret = '86dgHz6nxmI9dUpB9dn6lFT0SG1R589QjFrBnXTkpZv6E9Ikmk'
+access_token = '165526643-rAkKjwSfC2cL5wKpFB4nIteGvjBZ029pzNdX2QTl'
+access_token_secret = 'CIAs09XImLk499AERBaGsPy7ieRf1fpLFVvlDwHaMMpqf'
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+print(api)
+tweets = api.search('Artificial Intelligence', count=200)
+data = pd.DataFrame(data=[tweet.text for tweet in tweets], columns=['Tweets'])
+display(data.head(20))
+print(tweets[0].created_at)
+import nltk
+nltk.download('vader_lexicon')
+sid = SentimentIntensityAnalyzer()
+listy = []
+
+for index, row in data.iterrows():
+  ss = sid.polarity_scores(row["Tweets"])
+  listy.append(ss)
+  
+se = pd.Series(listy)
+data['polarity'] = se.values
+
+display(data.head(100))
