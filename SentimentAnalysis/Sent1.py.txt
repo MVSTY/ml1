@@ -5,11 +5,11 @@
 import tweepy
 import pandas as pd
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-#My Twitter API Authentication Variables
-consumer_key = 'k2UkCy0TpgxJgqUykEcEhQJKV'
-consumer_secret = '86dgHz6nxmI9dUpB9dn6lFT0SG1R589QjFrBnXTkpZv6E9Ikmk'
-access_token = '165526643-rAkKjwSfC2cL5wKpFB4nIteGvjBZ029pzNdX2QTl'
-access_token_secret = 'CIAs09XImLk499AERBaGsPy7ieRf1fpLFVvlDwHaMMpqf'
+#My Twitter API Authentication Variables:insert them below
+consumer_key = 
+consumer_secret = 
+access_token =
+access_token_secret = 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
